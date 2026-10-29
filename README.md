@@ -120,15 +120,6 @@ text
 
 ---
 
-Aur **`.gitignore`** bhi ek hi block mein:
 
-```gitignore
-node_modules/
-dist/
-.env
-*.log
-.DS_Store
-coverage/
-```
 
 
