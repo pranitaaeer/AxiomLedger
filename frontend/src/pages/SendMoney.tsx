@@ -170,7 +170,7 @@ export function SendMoney() {
 
   // 1. Fetch REAL Accounts from DB
   useEffect(() => {
-    fetch('/accounts')
+    fetch('https://axiomledger.onrender.com/accounts')
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
