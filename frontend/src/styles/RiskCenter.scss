@@ -1,0 +1,26 @@
+.risk-card {
+  border-left: 4px solid var(--red);
+
+  .risk-header-row {
+    margin-bottom: 8px;
+  }
+
+  .risk-reasons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-muted);
+    max-width: 320px;
+
+    .risk-reason-item {
+      line-height: 1.4;
+    }
+  }
+
+  .ledger-table {
+    td {
+      vertical-align: middle;
+    }
+  }
+}

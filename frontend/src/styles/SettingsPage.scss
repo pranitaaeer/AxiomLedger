@@ -1,0 +1,96 @@
+.settings-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 20px;
+
+  .settings-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .settings-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+
+      h2 {
+        font-size: 22px;
+        font-weight: 800;
+        margin: 0 0 4px 0;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    .settings-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      h3 {
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0;
+        color: var(--text);
+      }
+
+      .account-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 16px;
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+
+        .account-uuid {
+          font-family: monospace;
+          font-size: 11px;
+          margin-top: 4px;
+        }
+      }
+
+      .api-key-row {
+        gap: 8px;
+
+        .api-key-input {
+          flex: 1;
+          background: var(--bg-input);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          padding: 10px 14px;
+          font-family: monospace;
+          color: var(--text);
+          font-size: 13px;
+        }
+      }
+
+      .webhook-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        input[type="url"] {
+          width: 100%;
+          padding: 10px 14px;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          background: var(--bg-input);
+          color: var(--text);
+          font: inherit;
+          font-size: 14px;
+
+          &:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--accent-bg);
+          }
+        }
+
+        .saved-indicator {
+          font-size: 13px;
+          font-weight: 600;
+          color: var(--primary);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+.send-money-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px;
+
+  .send-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 24px;
+    align-items: start;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .wallet-item {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-input);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: var(--border-strong);
+    }
+  }
+
+  .transfer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+
+      input, select {
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--bg-input);
+        color: var(--text);
+        font-size: 14px;
+        transition: all 0.2s ease;
+
+        &:focus {
+          outline: none;
+          border-color: var(--primary);
+          box-shadow: 0 0 0 3px var(--accent-bg);
+        }
+      }
+    }
+  }
+
+  .receipt-box {
+    padding: 18px;
+    background: var(--bg-input);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
+  }
+}

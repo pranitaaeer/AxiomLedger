@@ -1,0 +1,70 @@
+.transfer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  .transfer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      background: var(--bg-card);
+      border-color: var(--primary);
+      transform: translateX(3px);
+      box-shadow: var(--shadow);
+    }
+
+    &:active {
+      transform: translateX(1px);
+    }
+
+    .transfer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .transfer-amount {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        font-variant-numeric: tabular-nums;
+        color: var(--text);
+      }
+
+      .transfer-accounts {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-family: monospace;
+
+        .transfer-arrow {
+          color: var(--primary);
+          font-weight: 700;
+        }
+      }
+    }
+
+    // Pill status modifier tweaks if needed
+    .pill {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.modal-backdrop {
+  .modal {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-strong);
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    input[type="number"] {
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}

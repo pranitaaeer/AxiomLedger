@@ -1,0 +1,172 @@
+.transactions-page {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  align-items: start;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---------------- Zero DB Empty State ---------------- */
+  .zero-db-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 64px 24px;
+    background: radial-gradient(circle at top, var(--accent-bg), transparent 70%), var(--bg-card);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius);
+
+    .empty-badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--bg-input);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .empty-illustration {
+      margin-bottom: 16px;
+      
+      .glow-icon {
+        font-size: 48px;
+        width: 88px;
+        height: 88px;
+        display: grid;
+        place-items: center;
+        border-radius: 24px;
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        box-shadow: 0 0 32px var(--accent-bg);
+      }
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      max-width: 440px;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 24px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: var(--primary-text);
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.25);
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  /* ---------------- Transactions List ---------------- */
+  .transactions-list-card {
+    .transactions-header {
+      margin-bottom: 4px;
+    }
+
+    .search-box-wrapper {
+      margin: 12px 0 16px 0;
+
+      .search-input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--bg-input);
+        color: var(--text);
+        font: inherit;
+        font-size: 14px;
+        transition: all 0.2s ease;
+
+        &:focus {
+          outline: none;
+          border-color: var(--primary);
+          background: var(--bg-card);
+          box-shadow: 0 0 0 3px var(--accent-bg);
+        }
+      }
+    }
+
+    .transfer-list {
+      max-height: 600px;
+      overflow-y: auto;
+      padding-right: 4px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: var(--border-strong);
+        border-radius: 3px;
+      }
+
+      .transfer-row {
+        width: 100%;
+        margin-bottom: 8px;
+
+        &.selected {
+          border-color: var(--primary);
+          background: var(--accent-bg);
+          box-shadow: var(--shadow);
+        }
+
+        .transfer-id-sub {
+          font-family: monospace;
+          font-size: 11px;
+          margin-top: 2px;
+        }
+      }
+
+      .search-empty {
+        padding: 40px 0;
+        gap: 8px;
+        button {
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+
+  /* ---------------- Detail Panel ---------------- */
+  .transactions-detail-stack {
+    position: sticky;
+    top: 96px;
+
+    .ledger-placeholder {
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}

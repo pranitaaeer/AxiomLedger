@@ -1,0 +1,70 @@
+.balance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text);
+  white-space: nowrap;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  // Reconciled
+  &.ok {
+    background: var(--green-bg);
+    border-color: transparent;
+    color: var(--green);
+
+    .dot {
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
+    }
+  }
+
+  // No reconciliation run yet
+  &.empty {
+    background: var(--yellow-bg);
+    border-color: transparent;
+    color: var(--yellow);
+
+    .dot {
+      background: var(--yellow);
+    }
+  }
+
+  // API failed
+  &.error {
+    background: var(--red-bg);
+    border-color: transparent;
+    color: var(--red);
+
+    .dot {
+      background: var(--red);
+    }
+  }
+
+  // Checking...
+  &.loading .dot {
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+
+  // Chhoti screen pe sirf dot dikhao
+  @media (max-width: 600px) {
+    padding: 10px;
+
+    .balance-label {
+      display: none;
+    }
+  }
+}
