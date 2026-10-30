@@ -113,10 +113,8 @@ entries — append-only double-entry rows, immutability enforced by trigger
 □ Rule-based risk engine + human review queue (Phase 3)
 □ React dashboard (Phase 4)
 
-# 📝 License
-MIT
-
-text
+# Author
+Pranita Aeer
 
 ---
 
