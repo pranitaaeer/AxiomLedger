@@ -9,7 +9,14 @@ import { webhookRouter } from './modules/webhooks/webhook.routes.js';
 dotenv.config();
 
 export const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173', 
+    'https://frontend-5mly-ev70ioo3e-pranitaaeers-projects.vercel.app' 
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
 app.use(express.json());
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
