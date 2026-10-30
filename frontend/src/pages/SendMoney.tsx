@@ -170,18 +170,28 @@ export function SendMoney() {
 
   // 1. Fetch REAL Accounts from DB
   useEffect(() => {
-    fetch('https://axiomledger.onrender.com/accounts')
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data) && data.length > 0) {
-          setAccounts(data);
-          setFrom(data[0].id);
-          setTo(data.length > 1 ? data[1].id : data[0].id);
-        }
-      })
-      .catch(console.error);
-  }, []);
-
+  fetch('https://axiomledger.onrender.com/accounts')
+    .then(async (res) => {
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`HTTP Error ${res.status}: ${errorText.substring(0, 100)}...`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      if (Array.isArray(data) && data.length > 0) {
+        setAccounts(data);
+        setFrom(data[0].id);
+        setTo(data.length > 1 ? data[1].id : data[0].id);
+      } else {
+        console.warn("⚠️ empty arr:", data);
+      }
+    })
+    .catch((err) => {
+      // 2. Ye line console mein exact error print karegi
+      console.error("❌ Exact API Error:", err.message);
+    });
+}, []);
   const filteredAccounts = accounts.filter(a => 
     a.id.toLowerCase().includes(walletSearch.toLowerCase()) || 
     a.type.toLowerCase().includes(walletSearch.toLowerCase())
