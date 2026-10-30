@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_URL || '/api';
+const baseURL = "https://axiomledger.onrender.com"; // in production
 
+// const baseURL="/api" in local development
 const api = axios.create({ baseURL });
 
 export type Transfer = {
