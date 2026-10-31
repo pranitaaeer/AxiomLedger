@@ -32,9 +32,9 @@
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import request from 'supertest';
-import { app } from '../src/app.js';
-import { pg } from '../src/config/db.js';
-import { redis } from '../src/config/redis.js';
+import { app } from '../app.js';
+import { pg } from '../config/db.js';
+import { redis } from '../config/redis.js';
 
 let transferId: string;
 

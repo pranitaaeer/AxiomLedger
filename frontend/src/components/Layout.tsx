@@ -1,146 +1,4 @@
 
-// import { useEffect, useState } from 'react';
-// import { Outlet, NavLink, useLocation } from 'react-router-dom';
-// import { BalanceBadge } from './BalanceBadge';
-
-// type Theme = 'light' | 'dark';
-
-// const NAV = [
-//   { to: '/dashboard', label: 'Dashboard', icon: '▦' },
-//   { to: '/transfers', label: 'Send Money', icon: '⇄' },
-//   { to: '/bulk', label: 'Bulk Payouts', icon: '📦' },
-//   { to: '/transactions', label: 'Transactions', icon: '⇄' },
-//   { to: '/wallets', label: 'Wallets', icon: '💼' },
-//   { to: '/risk', label: 'Risk Center', icon: '🛡' },
-//   { to: '/reconciliation', label: 'Reconciliation', icon: '⚖' },
-//   { to: '/analytics', label: 'Analytics', icon: '📊' },
-//   { to: '/settings', label: 'Settings', icon: '⚙' },
-// ];
-
-// function BrandLogo() {
-//   return (
-//     <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-//       <rect width="40" height="40" rx="10" fill="var(--primary)" />
-//       <path d="M12 12H28M12 20H22M12 28H26" stroke="var(--primary-text)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-//       <circle cx="27" cy="27" r="5" fill="var(--bg-card)" />
-//       <path d="M25 27L26.5 28.5L29 25.5" stroke="var(--primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-//     </svg>
-//   );
-// }
-
-// function getInitialTheme(): Theme {
-//   try {
-//     const saved = localStorage.getItem('theme');
-//     if (saved === 'light' || saved === 'dark') return saved;
-//   } catch {}
-//   return 'dark';
-// }
-
-// export function Layout() {
-//   const [theme, setTheme] = useState<Theme>(getInitialTheme);
-//   const [menuOpen, setMenuOpen] = useState(false);
-//   const [refreshKey, setRefreshKey] = useState(0);
-//   const { pathname } = useLocation();
-
-//   useEffect(() => {
-//     document.documentElement.setAttribute('data-theme', theme);
-//     try { localStorage.setItem('theme', theme); } catch {}
-//   }, [theme]);
-
-//   useEffect(() => { setMenuOpen(false); }, [pathname]);
-
-//   // Listen for global refresh events (for BalanceBadge)
-//   useEffect(() => {
-//     const handleRefresh = () => setRefreshKey(k => k + 1);
-//     window.addEventListener('refresh-data', handleRefresh);
-//     return () => window.removeEventListener('refresh-data', handleRefresh);
-//   }, []);
-
-//   const title = NAV.find((n) => pathname.startsWith(n.to))?.label ?? 'AxiomLedger';
-
-//   return (
-//     <div className="app-container">
-//       {menuOpen && <div className="sidebar-overlay" onClick={() => setMenuOpen(false)} />}
-
-//       <aside className={`sidebar ${menuOpen ? 'open' : ''}`}>
-        
-//         {/* --- NAYA BRANDING SECTION --- */}
-//         <div style={{ padding: '0 10px', marginBottom: '24px' }}>
-//           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-//             <BrandLogo />
-//             <span style={{ fontSize: '20px', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--text)' }}>
-//               Axiom<span style={{ color: 'var(--primary)' }}>Ledger</span>
-//             </span>
-//           </div>
-//           <p style={{ 
-//             margin: 0, 
-//             fontSize: '10px', 
-//             color: 'var(--text-muted)', 
-//             textTransform: 'uppercase', 
-//             letterSpacing: '0.08em', 
-//             fontWeight: 700,
-//             lineHeight: 1.4
-//           }}>
-//             Double-Entry Ledger<br/>& AI Risk Engine
-//           </p>
-//         </div>
-
-//         <nav className="nav-group">
-//           <p className="nav-section">Menu</p>
-//           {NAV.map((item) => (
-//             <NavLink
-//               key={item.to}
-//               to={item.to}
-//               className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
-//             >
-//               <span className="nav-icon">{item.icon}</span>
-//               {item.label}
-//             </NavLink>
-//           ))}
-//         </nav>
-
-//         <div className="sidebar-footer">
-//           <div className="avatar">A</div>
-//           <div>
-//             <p className="profile-name" style={{margin:0}}>Admin</p>
-//             <p className="muted" style={{margin:0, fontSize: 12}}>Finance Ops</p>
-//           </div>
-//         </div>
-//       </aside>
-
-//       <div className="main-content">
-//         <header className="topbar">
-//           <div className="row">
-//             <button
-//               className="menu-btn secondary"
-//               aria-label="Toggle menu"
-//               onClick={() => setMenuOpen((o) => !o)}
-//             >
-//               ☰
-//             </button>
-//             <h1>{title}</h1>
-//           </div>
-
-//           <div className="topbar-right">
-//             <BalanceBadge refreshKey={refreshKey} />
-//             <button
-//               className="theme-toggle"
-//               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-//               aria-label="Toggle theme"
-//             >
-//               {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-//             </button>
-//           </div>
-//         </header>
-
-//         <main className="dashboard-container">
-//           <Outlet />
-//         </main>
-//       </div>
-//     </div>
-//   );
-// }
-
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { MouseEvent as ReactMouseEvent } from 'react';
 import { flushSync } from 'react-dom';
@@ -246,6 +104,12 @@ export function Layout() {
     document.documentElement.setAttribute('data-theme', theme);
     try { localStorage.setItem('theme', theme); } catch {}
   }, [theme]);
+
+  const handleLogout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.href = '/login';
+};
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
@@ -487,6 +351,10 @@ export function Layout() {
               aria-label="Toggle theme"
             >
               {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+            </button>
+
+            <button className="secondary" onClick={handleLogout} style={{ padding: '8px 12px', fontSize: '13px' }}>
+               Logout
             </button>
           </div>
         </header>

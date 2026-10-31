@@ -96,6 +96,16 @@ CREATE TABLE IF NOT EXISTS settings (
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- users: Authentication ke liye
+CREATE TABLE IF NOT EXISTS users (
+  id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name          TEXT NOT NULL,
+  email         TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role          TEXT NOT NULL DEFAULT 'admin' CHECK (role IN ('admin', 'viewer')),
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 -- Insert default values if they don't exist
 INSERT INTO settings (key, value) 
 VALUES 
