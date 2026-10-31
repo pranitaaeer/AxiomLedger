@@ -5,6 +5,7 @@ import { transferRouter } from './modules/transfers/transfer.routes.js';
 import { ledgerRouter } from './modules/ledger/ledger.routes.js';
 import { reconciliationRouter } from './modules/reconciliation/reconciliation.routes.js';
 import { webhookRouter } from './modules/webhooks/webhook.routes.js';
+import { authRouter } from './modules/auth/auth.routes.js';
 
 dotenv.config();
 
@@ -24,5 +25,8 @@ app.use(express.json());
 app.get('/health', (_req, res) => res.json({ ok: true }));
 app.use(transferRouter);
 app.use(ledgerRouter);
+
+app.use(authRouter); 
+
 app.use(webhookRouter);
 app.use(reconciliationRouter);
