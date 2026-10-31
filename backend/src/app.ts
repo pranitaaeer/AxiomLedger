@@ -12,7 +12,9 @@ export const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173', 
-    'https://frontend-5mly-ev70ioo3e-pranitaaeers-projects.vercel.app' 
+    'https://frontend-5mly-ev70ioo3e-pranitaaeers-projects.vercel.app' ,
+    'https://frontend-5mly.vercel.app'
+    
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
