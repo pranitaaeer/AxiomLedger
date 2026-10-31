@@ -30,7 +30,7 @@ export function ReconciliationPage() {
   const loadData = async () => {
     try {
       // Fetch pending transfers
-      const pendingRes = await fetch('/api/webhooks/pending');
+      const pendingRes = await fetch('https://axiomledger.onrender.com/webhooks/pending');
       const pendingData = await pendingRes.json();
       setPendingTransfers(pendingData);
       if (pendingData.length > 0 && !selectedId) {
@@ -38,7 +38,7 @@ export function ReconciliationPage() {
       }
 
       // Fetch mismatches from latest reconciliation run
-      const mismatchRes = await fetch('/api/reconciliation/latest');
+      const mismatchRes = await fetch('https://axiomledger.onrender.com/reconciliation/latest');
       const mismatchData = await mismatchRes.json();
       setMismatches(mismatchData.details || []);
 
@@ -62,7 +62,7 @@ export function ReconciliationPage() {
 
     try {
       // Send fake webhook
-      const simRes = await fetch('/api/webhooks/simulate', {
+      const simRes = await fetch('https://axiomledger.onrender.com/webhooks/simulate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -78,7 +78,7 @@ export function ReconciliationPage() {
       setMessage({ text: `✅ Bank settlement received! Ref: ${data.providerRef}`, type: 'success' });
       
       // Auto-run reconciliation immediately after webhook
-      await fetch('/api/reconciliation/run', { method: 'POST' });
+      await fetch('https://axiomledger.onrender.com/reconciliation/run', { method: 'POST' });
       
       // Refresh the page data
       setSelectedId('');

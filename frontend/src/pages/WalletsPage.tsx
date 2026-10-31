@@ -17,7 +17,7 @@ export function WalletsPage() {
   useEffect(() => {
     setLoading(true);
     // Real API call to fetch accounts with live balance
-    fetch('/api/accounts')
+    fetch('https://axiomledger.onrender.com/accounts')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch accounts');
         return res.json();

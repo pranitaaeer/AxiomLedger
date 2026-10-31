@@ -11,7 +11,7 @@ type RiskTransfer = Transfer & {
 };
 
 /* ---------- GSAP helpers ---------- */
-// Number count-up (pichli value se nayi value tak, jab bhi value badle)
+
 function CountUp({ value, duration = 1.2, delay = 0.3 }: { value: number; duration?: number; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const prev = useRef(0);
@@ -76,7 +76,7 @@ const cardLeave = (e: ReactMouseEvent<HTMLElement>) => {
 const btnEnter = (e: ReactMouseEvent<HTMLElement>) => {
   if (prefersReducedMotion()) return;
   const el = e.currentTarget;
-  el.style.transition = 'none'; // CSS transition GSAP ke saath lag karta hai
+  el.style.transition = 'none'; 
   gsap.to(el, { scale: 1.03, duration: 0.2, ease: 'power2.out', overwrite: 'auto' });
 };
 const btnLeave = (e: ReactMouseEvent<HTMLElement>) => {
@@ -196,7 +196,7 @@ export function RiskCenter() {
   const emptyRef = useRef<HTMLDivElement>(null);
   const blockedRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
-  const acting = useRef<Set<string>>(new Set()); // double-click se bachne ke liye
+  const acting = useRef<Set<string>>(new Set()); 
   const hadItems = useRef(false);
 
   const loadData = () => {
@@ -215,7 +215,7 @@ export function RiskCenter() {
     const card = cardRefs.current[id];
 
     try {
-      const res = await fetch(`/api/transfers/${id}/${action}`, { method: 'POST' });
+      const res = await fetch(`https://axiomledger.onrender.com/transfers/${id}/${action}`, { method: 'POST' });
       if (!res.ok) throw new Error('Action failed');
       
       window.dispatchEvent(new Event('refresh-data')); // Refresh global balance
@@ -280,7 +280,7 @@ export function RiskCenter() {
     return () => ctx.revert();
   }, []);
 
-  /* ---------- 2. Pending pill: yellow ring pulse jab review pending ho ---------- */
+  /* ---------- 2. Pending pill: yellow ring pulse jab review pending ---------- */
   useEffect(() => {
     const pill = pillRef.current;
     if (!hasPending || !pill || prefersReducedMotion()) return;
@@ -359,7 +359,7 @@ export function RiskCenter() {
     return () => {
       ctx.revert();
       decoded.forEach(({ el, text }) => {
-        el.textContent = text; // scramble beech mein kata to original text wapas
+        el.textContent = text; 
       });
     };
   }, [loading, queueKey]);
@@ -372,11 +372,11 @@ export function RiskCenter() {
 
     const instances = cards.map((card, idx) => {
       const id = reviewQueue[idx]?.id;
-      const threshold = () => card.offsetWidth * 0.4; // card ki 40% chaudai se zyada kheencho
+      const threshold = () => card.offsetWidth * 0.4; 
 
       const [d] = Draggable.create(card, {
         type: 'x',
-        dragClickables: false, // buttons normal click hi rahenge
+        dragClickables: false, 
         minimumMovement: 10,
         cursor: 'grab',
         activeCursor: 'grabbing',
@@ -407,7 +407,7 @@ export function RiskCenter() {
     return () => {
       instances.forEach((d) => d.kill());
     };
-  }, [loading, queueKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [loading, queueKey]); 
 
   /* ---------- 5. "All clear!" state: icon pop + confetti (agar queue abhi clear hui ho) ---------- */
   useEffect(() => {
