@@ -26,8 +26,8 @@ export function SettingsPage() {
   // Fetch Real Data on load
   useEffect(() => {
     Promise.all([
-      fetch('/api/settings').then(res => res.json()),
-      fetch('/api/accounts').then(res => res.json())
+      fetch('https://axiomledger.onrender.com/settings').then(res => res.json()),
+      fetch('https://axiomledger.onrender.com/accounts').then(res => res.json())
     ]).then(([settings, accountsData]) => {
       setApiKey(settings.api_key || '');
       setWebhookUrl(settings.webhook_url || '');
@@ -44,7 +44,7 @@ export function SettingsPage() {
     e.preventDefault();
     setSaving(true);
     try {
-      await fetch('/api/settings/webhook', {
+      await fetch('https://axiomledger.onrender.com/settings/webhook', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ webhookUrl })
@@ -61,7 +61,7 @@ export function SettingsPage() {
     if (!window.confirm("Are you sure? This will instantly break any existing API integrations.")) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/settings/regenerate-key', { method: 'POST' });
+      const res = await fetch('https://axiomledger.onrender.com/settings/regenerate-key', { method: 'POST' });
       const data = await res.json();
       if (data.apiKey) setApiKey(data.apiKey);
     } finally {
