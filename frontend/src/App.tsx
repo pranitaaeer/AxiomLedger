@@ -9,14 +9,14 @@ import { WalletsPage } from './pages/WalletsPage';
 import { AnalyticsDashboard } from './pages/AnalyticsDashboard';
 import { SendMoney } from './pages/SendMoney';
 import { BulkPayout } from './pages/BulkPayout';
-// import LoginPage from './pages/auth/LoginPage';
+import LoginPage from './pages/auth/LoginPage';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* <Route path="login" element={<LoginPage />} /> */}
+          <Route path="login" element={<LoginPage />} />
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="transactions" element={<TransactionsPage />} />
