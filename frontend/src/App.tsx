@@ -15,8 +15,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
+
         <Route path="/" element={<Layout />}>
-          <Route path="login" element={<LoginPage />} />
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="transactions" element={<TransactionsPage />} />
@@ -29,6 +30,8 @@ export default function App() {
           <Route path="bulk-payout" element={<BulkPayout />} />
           <Route path="bulk" element={<BulkPayout />} />
         </Route>
+        
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );
