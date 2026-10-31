@@ -398,8 +398,7 @@
       font-weight: 800; font-size: 15px;
       border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 8px;
-      /* transform CSS transition nahi: magnetic/GSAP transform chalate hain */
-      transition: background 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
 

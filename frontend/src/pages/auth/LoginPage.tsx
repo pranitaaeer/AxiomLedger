@@ -99,8 +99,12 @@ const LoginPage: React.FC = () => {
           gsap.from(split.chars, { yPercent: 120, duration: 0.8, stagger: 0.05, ease: "back.out(1.8)" });
         }, 1.05)
         .to(subtitleEl, { duration: 1.4, ease: "none", scrambleText: { text: subtitleText, chars: "upperAndLowerCase", revealDelay: 0.3, speed: 0.7 } }, 1.3)
-        .from(".form-item", { y: 30, opacity: 0, duration: 0.8, stagger: 0.1 }, 1.2);
-
+        .fromTo(
+          ".form-item",
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, clearProps: "opacity" },
+          1.2
+        );
       // Mouse Parallax
       const layers: [string, number][] = [[".orb-1", 60], [".orb-2", -80], [".coins-container", 24], [".bg-grid", -14], [".brand-panel", -10]];
       const movers = layers.map(([sel, amt]) => ({
