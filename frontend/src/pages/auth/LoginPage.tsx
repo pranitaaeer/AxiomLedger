@@ -224,7 +224,7 @@ const LoginPage: React.FC = () => {
     morphToLoader(); // GSAP Animation start
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const apiUrl = 'https://axiomledger.onrender.com';
       const res = await fetch(`${apiUrl}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
