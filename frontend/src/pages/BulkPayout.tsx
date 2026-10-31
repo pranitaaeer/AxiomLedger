@@ -47,7 +47,7 @@ export function BulkPayout() {
     setResult(null);
 
     try {
-      const res = await fetch('/api/transfers/bulk', {
+      const res = await fetch('https://axiomledger.onrender.com/transfers/bulk', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ transfers: parsedData })
@@ -69,7 +69,7 @@ export function BulkPayout() {
   // NAYA FUNCTION: Backend se real CSV download karo
   const downloadRealCSV = async () => {
     try {
-      const res = await fetch('/api/accounts/export-csv');
+      const res = await fetch('https://axiomledger.onrender.com/accounts/export-csv');
       if (!res.ok) {
         const err = await res.json();
         throw new Error(err.error || 'Failed to download');
